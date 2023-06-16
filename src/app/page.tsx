@@ -1,27 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button, Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   const [fiatPerBtc, setFiatPerBtc] = useState(0)
-  const [currency, setCurrency] = useState('USD')
 
   const [sats, setSats] = useState(0)
   const [fiat, setFiat] = useState(0)
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  })
 
   useEffect( () => {
     async function fetchData() {
       const response = await fetch("https://blockchain.info/ticker")
       const jsonData = await response.json()
-      const price = Math.round(jsonData[currency].last)
+      const price = Math.round(jsonData['USD'].last)
       setFiatPerBtc(price)
       setFiat(1)
       setSats(Math.round(100_000_000 / price * 1))
