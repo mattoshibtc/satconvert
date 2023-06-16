@@ -46,8 +46,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <div className="w-96">
-        <h1 className="mb-5">Price per bitcoin: {fiatPerBtc}</h1>
+      <div className="w-9/10">
+        <h1 className="mt-10 mb-10">Price per bitcoin: {fiatPerBtc}</h1>
         <div className="mb-5">
           <Input label="Dollars" variant="standard" value={fiat} onChange={handleFiatChange}/>
         </div>
