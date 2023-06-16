@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Sats converter',
-  description: 'It does what it says',
+  description: 'Converts sats to fiat',
 }
 
 export default function RootLayout({
@@ -15,6 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
