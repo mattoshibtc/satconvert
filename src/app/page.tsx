@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Input } from "@material-tailwind/react";
-import CurrencyTextField from '@unicef/material-ui-currency-textfield'
+import { Input } from "@material-tailwind/react"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -50,15 +49,7 @@ export default function Home() {
       <div className="w-9/10">
         <h1 className="mt-10 mb-10">Price per bitcoin: {fiatPerBtc}</h1>
         <div className="mb-5">
-          <CurrencyTextField label="Amount"
-        		variant="standard"
-        		currencySymbol="$"
-        		minimumValue="0"
-        		outputFormat="string"
-        		decimalCharacter="."
-        		digitGroupSeparator=","
-            value={fiat} 
-            onChange={handleFiatChange}/>
+          <Input size='lg' label="Dollars" variant="standard" value={fiat} onChange={handleFiatChange}/>
         </div>
         <div className="mb-5">
           <Input size='lg' label="Sats" variant="standard" value={sats} onChange={handleSatsChange}/>
