@@ -2,7 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react'
 import TextField from '@mui/material/TextField'
-import { NumericFormat, numericFormatter, useNumericFormat } from 'react-number-format';
+import { useNumericFormat } from 'react-number-format';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -26,6 +29,12 @@ export default function Home() {
   const [fiatPerBtc, setFiatPerBtc] = useState(0)
   const [sats, setSats] = useState("")
   const [fiat, setFiat] = useState("")
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
   useEffect( () => {
     async function fetchData() {
@@ -76,10 +85,12 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <main className="flex min-h-screen flex-col items-center px-5">
       <div className="w-9/10">
         <h1 className="mt-10 mb-10 text-3xl">
-          Price per bitcoin: { priceFormat.format?.(fiatPerBtc.toString()) }
+          BTC/USD: { priceFormat.format?.(fiatPerBtc.toString()) }
         </h1>
         <div className="mb-5">
           <TextField
@@ -108,5 +119,6 @@ export default function Home() {
         </div>
       </div>
     </main>
+    </ThemeProvider>
   )
 }
