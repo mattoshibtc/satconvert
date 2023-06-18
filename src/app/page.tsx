@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Input } from "@material-tailwind/react"
+import TextField from '@mui/material/TextField'
 import { NumericFormat, numericFormatter, useNumericFormat } from 'react-number-format';
 
 export default function Home() {
@@ -82,21 +82,20 @@ export default function Home() {
           Price per bitcoin: { priceFormat.format?.(fiatPerBtc.toString()) }
         </h1>
         <div className="mb-5">
-          <Input
+          <TextField
             label="Dollars" 
             variant="standard" 
             className="text-4xl"
-            type='number'
+            inputmode="numeric"
             value={fiat}
             onFocus={handleFocusWithSymbol}
             onChange={handleFiatChange} />
         </div>
         <div className="mb-5">
-          <Input 
+          <TextField 
             label="Sats" 
             variant="standard" 
             value={sats}
-            type='number'
             onFocus={handleFocus}
             onChange={handleSatsChange} 
           />
