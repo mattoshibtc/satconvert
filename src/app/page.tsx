@@ -87,6 +87,7 @@ export default function Home() {
             variant="standard" 
             inputProps={{
               style: { fontSize: '4rem'},
+              inputMode: 'numeric'
             }}
             value={fiat}
             onFocus={handleFocusWithSymbol}
@@ -98,6 +99,7 @@ export default function Home() {
             variant="standard" 
             inputProps={{
               style: { fontSize: '4rem'},
+              inputMode: 'numeric'
             }}
             value={sats}
             onFocus={handleFocus}
