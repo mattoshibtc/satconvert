@@ -129,7 +129,7 @@ export default function Home() {
               variant="standard" 
               inputProps={{
                 style: { fontSize: '4rem'},
-                inputMode: 'numeric'
+                inputMode: 'decimal'
               }}
               value={fiat}
               onFocus={handleFocusWithSymbol}
