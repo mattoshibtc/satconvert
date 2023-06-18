@@ -87,9 +87,9 @@ export default function Home() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <main className="flex min-h-screen flex-col items-center px-5">
+      <main className="bg-black flex min-h-screen flex-col items-center px-5">
       <div className="w-9/10">
-        <h1 className="mt-10 mb-10 text-3xl">
+        <h1 className="mt-10 mb-10">
           BTC/USD: { priceFormat.format?.(fiatPerBtc.toString()) }
         </h1>
         <div className="mb-5">
