@@ -78,15 +78,16 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center">
       <div className="w-9/10">
-        <h1 className="mt-10 mb-10">
+        <h1 className="mt-10 mb-10 text-3xl">
           Price per bitcoin: { priceFormat.format?.(fiatPerBtc.toString()) }
         </h1>
         <div className="mb-5">
           <TextField
             label="Dollars" 
             variant="standard" 
-            className="text-4xl"
-            inputmode="numeric"
+            inputProps={{
+              style: { fontSize: '4rem'},
+            }}
             value={fiat}
             onFocus={handleFocusWithSymbol}
             onChange={handleFiatChange} />
@@ -95,6 +96,9 @@ export default function Home() {
           <TextField 
             label="Sats" 
             variant="standard" 
+            inputProps={{
+              style: { fontSize: '4rem'},
+            }}
             value={sats}
             onFocus={handleFocus}
             onChange={handleSatsChange} 
