@@ -85,7 +85,8 @@ export default function Home() {
           <Input
             label="Dollars" 
             variant="standard" 
-            className="leading-3"
+            className="text-4xl"
+            type='number'
             value={fiat}
             onFocus={handleFocusWithSymbol}
             onChange={handleFiatChange} />
@@ -95,6 +96,7 @@ export default function Home() {
             label="Sats" 
             variant="standard" 
             value={sats}
+            type='number'
             onFocus={handleFocus}
             onChange={handleSatsChange} 
           />
