@@ -20,6 +20,19 @@ export default function Home() {
   const [fiatPerBtc, setFiatPerBtc] = useState(0)
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
+
+  const handleTouchMove = (e: any) => {
+    e.preventDefault()
+  }
+  // prevent scrolling on mobile
+  useEffect(() => {
+    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+
+    // cleanup this component
+    return () => {
+      window.removeEventListener('touchmove', handleTouchMove)
+    };
+  }, []);
   
   useEffect( () => {
     async function fetchData() {
@@ -53,8 +66,8 @@ export default function Home() {
     decimalScale: 0,
   })
 
-  const handleFiatChange = (event: any) => {
-    let v = event.target.value
+  const handleFiatChange = (e: any) => {
+    let v = e.target.value
 
     // chop off last digit if it has 3 digits past the last decimal
     if (v[v.length - 4] === '.') {
@@ -96,8 +109,8 @@ export default function Home() {
     setSats(String(satsFormat.format?.(newSats.toString())))
   }
 
-  const handleSatsChange = (event: any) => {
-    const newSats = Number(satsFormat.removeFormatting?.(event.target.value))
+  const handleSatsChange = (e: any) => {
+    const newSats = Number(satsFormat.removeFormatting?.(e.target.value))
     const newFiat = fiatPerBtc * newSats / 100_000_000
     setFiat(String(fiatFormat.format?.(newFiat.toString())))
     setSats(String(satsFormat.format?.(newSats.toString())))
@@ -108,6 +121,7 @@ export default function Home() {
     e.stopPropagation()
     e.target.select() 
   }
+
   const handleRefresh = () => window.location.reload()
 
   const handleFocusWithSymbol = (event: any) => {
@@ -125,7 +139,7 @@ export default function Home() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <main className="bg-black flex min-h-screen flex-col items-center px-5">
-        <div className="w-9/10 fixed overflow-hidden inset-y-0">
+        <div className="w-9/10">
           <div className="inline-flex">
             <div className="mt-5 mb-10 text-white text-3xl">
               BTC/USD: {priceVal}
@@ -153,7 +167,7 @@ export default function Home() {
               }}
               value={sats}
               onFocus={handleFocus}
-              onChange={handleSatsChange} 
+              onChange={handleSatsChange}
             />
           </div>
         </div>
