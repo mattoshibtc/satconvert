@@ -116,7 +116,7 @@ export default function Home() {
   }
 
   const handleFocus = (e: any) => {
-    // e.target.select()
+    e.target.select()
   }
 
   const handleRefresh = () => window.location.reload()
