@@ -20,19 +20,10 @@ export default function Home() {
   const [fiatPerBtc, setFiatPerBtc] = useState(0)
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
-
-  const handleTouchMove = (e: any) => {
-    e.preventDefault()
+  
+  const handleRef = (el: any) => {
+    el.focus({preventScroll: true})
   }
-  // prevent scrolling on mobile
-  useEffect(() => {
-    document.body.addEventListener('touchmove', handleTouchMove, { passive: false })
-
-    // cleanup this component
-    return () => {
-      document.body.removeEventListener('touchmove', handleTouchMove)
-    };
-  }, []);
   
   useEffect( () => {
     async function fetchData() {
@@ -167,6 +158,7 @@ export default function Home() {
               }}
               value={sats}
               onFocus={handleFocus}
+              ref={handleRef}
               onChange={handleSatsChange}
             />
           </div>
