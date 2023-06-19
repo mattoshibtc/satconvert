@@ -21,10 +21,6 @@ export default function Home() {
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
   
-  const handleRef = (el: any) => {
-    el.focus({preventScroll: true})
-  }
-  
   useEffect( () => {
     async function fetchData() {
       const response = await fetch("https://blockchain.info/ticker")
@@ -108,8 +104,6 @@ export default function Home() {
   }
 
   const handleFocus = (e: any) => {
-    e.preventDefault()
-    e.stopPropagation()
     e.target.select() 
   }
 
@@ -158,7 +152,6 @@ export default function Home() {
               }}
               value={sats}
               onFocus={handleFocus}
-              ref={handleRef}
               onChange={handleSatsChange}
             />
           </div>
