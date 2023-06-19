@@ -25,11 +25,11 @@ export default function Home() {
     e.preventDefault()
   }
   useEffect(() => {
-    document.addEventListener('touchmove', preventDefault, { passive: false });
+    document.body.addEventListener('touchmove', preventDefault, { passive: false });
 
     // cleanup this component
     return () => {
-      document.removeEventListener('touchmove', preventDefault);
+      document.body.removeEventListener('touchmove', preventDefault);
     };
   }, []);
   
