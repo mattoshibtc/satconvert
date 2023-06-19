@@ -20,6 +20,18 @@ export default function Home() {
   const [fiatPerBtc, setFiatPerBtc] = useState(0)
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
+
+  const preventDefault = (e: any) => {
+    e.preventDefault()
+  }
+  useEffect(() => {
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+
+    // cleanup this component
+    return () => {
+      document.removeEventListener('touchmove', preventDefault);
+    };
+  }, []);
   
   useEffect( () => {
     async function fetchData() {
@@ -150,7 +162,6 @@ export default function Home() {
                 style: { fontSize: '4rem'},
                 inputMode: 'numeric',
               }}
-              className={"focus:overflow-hidden"}
               value={sats}
               onFocus={handleFocus}
               onChange={handleSatsChange}
