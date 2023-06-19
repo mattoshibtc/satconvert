@@ -54,7 +54,12 @@ export default function Home() {
   })
 
   const handleFiatChange = (event: any) => {
-    const v = event.target.value
+    let v = event.target.value
+
+    // chop off last digit if it has 3 digits past the last decimal
+    if (v[v.length - 4] === '.') {
+      v = v.slice(0, -1)
+    }
 
     if (v === "" || v === "$") {
       setFiat("$")
@@ -69,11 +74,7 @@ export default function Home() {
     }
 
     const newFiat = Number(fiatFormat.removeFormatting?.(v))
-    console.log(`v: ${v}`)
-    console.log(`newFiat: ${newFiat}`)
     const newSats = Math.round(100_000_000 / fiatPerBtc * newFiat)
-    console.log(`newSats: ${newSats}, newFiat: ${newFiat}`)
-
     let reformat = String(fiatFormat.format?.(newFiat.toString()))
 
     // if ends with ".", then add back the decimal point
@@ -85,6 +86,10 @@ export default function Home() {
     } // if ends with ".00", then add back the ".00"
     else if (v.endsWith(".00") || v.endsWith(".000")) {
       reformat = reformat + ".00"
+    } // ends with .[d],  then 0 at the end
+    else if (v.endsWith("0") && v[v.length - 3] === '.') {
+      console.log('ennds with the decimal')
+      reformat = reformat + "0"
     }
 
     setFiat(reformat)
@@ -98,8 +103,12 @@ export default function Home() {
     setSats(String(satsFormat.format?.(newSats.toString())))
   }
 
-  const handleFocus = (event: any) => event.target.select()
-
+  const handleFocus = (e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+    window.scrollTo(0,0)
+    e.target.select() 
+  }
   const handleRefresh = () => window.location.reload()
 
   const handleFocusWithSymbol = (event: any) => {
@@ -107,7 +116,7 @@ export default function Home() {
     t.setSelectionRange(1, t.value.length)
   }
 
-  let priceVal = <span className="inline-flex">{priceFormat.format?.(fiatPerBtc.toString())} <p className="ml-5 text-[#90caf9]" onClick={handleRefresh}>{'\u27F3'}</p></span>
+  let priceVal = <span className="inline-flex">{priceFormat.format?.(fiatPerBtc.toString())} <p className="ml-5 text-[#90caf9] hover:text-[#42a5f5]" onClick={handleRefresh}>{'\u27F3'}</p></span>
 
   if (isLoading) {
     priceVal = <CircularProgress size={"1.5rem"}/>  
@@ -119,8 +128,8 @@ export default function Home() {
       <main className="bg-black flex min-h-screen flex-col items-center px-5">
         <div className="w-9/10">
           <div className="inline-flex">
-            <div className="mt-10 mb-10 text-white text-2xl">
-              <p>BTC/USD: {priceVal}</p>
+            <div className="mt-10 mb-10 text-white text-3xl">
+              BTC/USD: {priceVal}
             </div>
           </div>
           <div className="mb-5">
@@ -129,7 +138,7 @@ export default function Home() {
               variant="standard" 
               inputProps={{
                 style: { fontSize: '4rem'},
-                inputMode: 'decimal'
+                inputMode: 'decimal',
               }}
               value={fiat}
               onFocus={handleFocusWithSymbol}
