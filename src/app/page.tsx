@@ -107,6 +107,7 @@ export default function Home() {
     e.preventDefault()
     e.stopPropagation()
     e.target.select()
+    e.target.focus({preventScroll: true})
   }
   const handleRefresh = () => window.location.reload()
 
@@ -124,7 +125,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <main className="bg-black flex min-h-screen flex-col items-center px-5 fixed">
+      <main className="bg-black flex min-h-screen flex-col items-center px-5">
         <div className="w-9/10">
           <div className="inline-flex">
             <div className="mt-5 mb-10 text-white text-3xl">
