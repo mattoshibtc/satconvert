@@ -119,7 +119,7 @@ export default function Home() {
 
   const handleFocus = (e: any) => {
     e.target.select()
-    setTimeout(() => window.scrollTo(0, 0), 1)
+    setTimeout(() => window.scrollTo(0, 0), 1000)
   }
 
   const handleRefresh = () => window.location.reload()
