@@ -21,17 +21,17 @@ export default function Home() {
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
 
-  const preventDefault = (e: any) => {
-    e.preventDefault()
-  }
-  useEffect(() => {
-    document.body.addEventListener('touchmove', preventDefault, { passive: false });
+  // const preventDefault = (e: any) => {
+  //   e.preventDefault()
+  // }
+  // useEffect(() => {
+  //   document.body.addEventListener('touchmove', preventDefault, { passive: false });
 
-    // cleanup this component
-    return () => {
-      document.body.removeEventListener('touchmove', preventDefault);
-    };
-  }, []);
+  //   // cleanup this component
+  //   return () => {
+  //     document.body.removeEventListener('touchmove', preventDefault);
+  //   };
+  // }, []);
   
   useEffect( () => {
     async function fetchData() {
@@ -117,6 +117,7 @@ export default function Home() {
 
   const handleFocus = (e: any) => {
     e.target.select()
+    setTimeout(() => window.scrollTo(0,0), 50)
   }
 
   const handleRefresh = () => window.location.reload()
