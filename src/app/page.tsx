@@ -26,11 +26,11 @@ export default function Home() {
   }
   // prevent scrolling on mobile
   useEffect(() => {
-    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.body.addEventListener('touchmove', handleTouchMove, { passive: false })
 
     // cleanup this component
     return () => {
-      document.removeEventListener('touchmove', handleTouchMove)
+      document.body.removeEventListener('touchmove', handleTouchMove)
     };
   }, []);
   
