@@ -104,7 +104,6 @@ export default function Home() {
   }
 
   const handleFocus = (e: any) => {
-    e.target.preventDefault()
     e.target.select() 
   }
 
