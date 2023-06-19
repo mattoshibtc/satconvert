@@ -106,8 +106,9 @@ export default function Home() {
   const handleFocus = (e: any) => {
     e.preventDefault()
     e.stopPropagation()
-    e.target.select()
-    e.target.focus({preventScroll: true})
+    window.scrollTo(0,0)
+    e.target.select() 
+    window.scrollTo(0,0)
   }
   const handleRefresh = () => window.location.reload()
 
