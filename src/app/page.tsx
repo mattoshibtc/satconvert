@@ -124,10 +124,10 @@ export default function Home() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <main className="bg-black flex min-h-screen flex-col items-center px-5">
+      <main className="bg-black flex min-h-screen flex-col items-center px-5 fixed">
         <div className="w-9/10">
           <div className="inline-flex">
-            <div className="mt-8 mb-10 text-white text-3xl">
+            <div className="mt-5 mb-10 text-white text-3xl">
               BTC/USD: {priceVal}
             </div>
           </div>
