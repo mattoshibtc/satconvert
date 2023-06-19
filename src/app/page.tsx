@@ -21,17 +21,19 @@ export default function Home() {
   const [fiat, setFiat] = useState("$")
   const [sats, setSats] = useState("")
 
-  // const preventDefault = (e: any) => {
-  //   e.preventDefault()
-  // }
-  // useEffect(() => {
-  //   document.body.addEventListener('touchmove', preventDefault, { passive: false });
+  const preventDefault = (e: any) => {
+    e.preventDefault()
+  }
+  useEffect(() => {
+    document.addEventListener('touchmove', preventDefault, { passive: false });
+    document.addEventListener('touchstart', preventDefault, { passive: false });
 
-  //   // cleanup this component
-  //   return () => {
-  //     document.body.removeEventListener('touchmove', preventDefault);
-  //   };
-  // }, []);
+    // cleanup this component
+    return () => {
+      document.removeEventListener('touchmove', preventDefault);
+      document.removeEventListener('touchstart', preventDefault);
+    };
+  }, []);
   
   useEffect( () => {
     async function fetchData() {
