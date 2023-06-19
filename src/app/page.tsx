@@ -128,7 +128,7 @@ export default function Home() {
       <main className="bg-black flex min-h-screen flex-col items-center px-5">
         <div className="w-9/10">
           <div className="inline-flex">
-            <div className="mt-10 mb-10 text-white text-3xl">
+            <div className="mt-20 mb-10 text-white text-3xl">
               BTC/USD: {priceVal}
             </div>
           </div>
@@ -139,6 +139,7 @@ export default function Home() {
               inputProps={{
                 style: { fontSize: '4rem'},
                 inputMode: 'decimal',
+                WebkitUserSelect: 'none'
               }}
               value={fiat}
               onFocus={handleFocusWithSymbol}
@@ -150,7 +151,8 @@ export default function Home() {
               variant="standard" 
               inputProps={{
                 style: { fontSize: '4rem'},
-                inputMode: 'numeric'
+                inputMode: 'numeric',
+                WebkitUserSelect: 'none'
               }}
               value={sats}
               onFocus={handleFocus}
